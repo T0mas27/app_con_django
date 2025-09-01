@@ -19,6 +19,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
- path('admin/', admin.site.urls),
- path('inicio/', views.inicio, name='inicio'),
+    path('admin/', admin.site.urls),
+    path('productos/', views.lista_productos, name='productos'),
 ]
