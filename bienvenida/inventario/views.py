@@ -3,18 +3,24 @@ from .models import Producto
 from .forms import ProductoForm
 
 # READ (List)
+
+
 def producto_list(request):
     productos = Producto.objects.all()
     return render(request, 'inventario/producto_list.html',
-{'object_list': productos})
+                  {'object_list': productos})
 
 # READ (Detail)
+
+
 def producto_detail(request, pk):
     producto = get_object_or_404(Producto, pk=pk)
     return render(request, 'inventario/producto_detail.html',
-{'object': producto})
+                  {'object': producto})
 
 # CREATE
+
+
 def producto_create(request):
     if request.method == 'POST':
         form = ProductoForm(request.POST)
@@ -23,8 +29,9 @@ def producto_create(request):
             return redirect('producto_list')
     else:
         form = ProductoForm()
-    return render(request, 'inventario/producto_form.html', {'form':
-form})
+    return render(request, 'inventario/producto_form.html', {'form':form})
+                                                             
+
 
 def producto_update(request, pk):
     producto = get_object_or_404(Producto, pk=pk)
@@ -36,12 +43,12 @@ def producto_update(request, pk):
     else:
         form = ProductoForm(instance=producto)
         return render(request, 'inventario/producto_form.html', {'form':
-    form})
+                                                                 form})
 
-    def producto_delete(request, pk):
-        producto = get_object_or_404(Producto, pk=pk)
+
+def producto_delete(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
     if request.method == 'POST':
         producto.delete()
-    return redirect('producto_list')
-    return render(request,
-'inventario/producto_confirm_delete.html', {'object': producto})
+        return redirect('producto_list')
+    return render(request, 'inventario/producto_confirm_delete.html', {'object': producto})

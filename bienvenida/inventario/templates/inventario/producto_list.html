@@ -4,23 +4,32 @@
  Listado de productos 
 {% endblock  %}
 
-{% block %}
-    <header>
-        <h1>listado de productos</h1>
-{% endblock  %}
+{% block header %}
+    <header class="w-full bg-red-700 p-6">
+            <h1 class="text-xl font-bold">listado de productos</h1>
+</header>
+{% endblock %}
 
 
 {% block main %}   
 <main>
     <section>
-        <h2>aqui va a estar el listado de productos</h2>
+        <a href="" class="border border-violet-400 rounded p-2 shadow text-center">
+            craer prodcuto ñañañaña
+        </a>
+        <h2>aqui va a estar el listado de productos tussi kiere </h2>
         <p> mota mota</p>
         <ul>
-           <li>1. producto</li> 
-           <li>2. producto</li> 
-           <li>3. producto</li> 
-           <li>4. producto</li> 
-           <li>5. producto</li> 
+          {% for producto in object_list %}
+            <li class="underline flex flex-col gap-1 p-2 shadow rounded">
+                <span>
+                    {{ producto.nombre}} | {{producto.precio}} | {{producto.stock}}
+                </span>
+                <span>
+                    {{producto.descripcion}}
+                </span>
+            </li>
+          {%endfor%}
         </ul>
     </section>
 </main>
